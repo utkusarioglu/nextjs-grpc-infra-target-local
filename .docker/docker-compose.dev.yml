@@ -2,7 +2,7 @@ version: "3.9"
 
 services:
   terraform:
-    container_name: terraform-kubernetes-repo-template
+    container_name: nextjs-grpc-infra-local
     image: utkusarioglu/terraform-kubernetes-devcontainer:1.2.12
     volumes:
-      - ..:/utkusarioglu-com/templates/terraform-kubernetes-repo-template
+      - ../../..:/utkusarioglu-com/projects/nextjs-grpc/

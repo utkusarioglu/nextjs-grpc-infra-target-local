@@ -1,11 +1,11 @@
 {
-  "name": "terraform-kubernetes-repo-template.templates.utkusarioglu.com",
+  "name": "local.infra.nextjs-grpc.projects.utkusarioglu.com",
   "dockerComposeFile": [
     "../.docker/docker-compose.dev.yml",
     "docker-compose.yml"
   ],
   "service": "terraform",
-  "workspaceFolder": "/utkusarioglu-com/templates/terraform-kubernetes-repo-template",
+  "workspaceFolder": "/utkusarioglu-com/projects/nextjs-grpc/infra/local",
   "customizations": {
     "vscode": {
       "extensions": [
