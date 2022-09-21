@@ -14,6 +14,7 @@ module "app" {
   sld                   = var.sld
   tld                   = var.tld
   environment           = "local"
+  cluster_name          = var.cluster_name
 
   depends_on = [
     module.base
