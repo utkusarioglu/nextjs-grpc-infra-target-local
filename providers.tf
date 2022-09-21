@@ -8,4 +8,4 @@ provider "helm" {
   }
 }
 
-provider "local" { }
+provider "local" {}
