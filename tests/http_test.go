@@ -2,12 +2,12 @@ package test
 
 import (
 	"crypto/tls"
+	"fmt"
 	"strings"
 	"testing"
 	"time"
 
 	http_helper "github.com/gruntwork-io/terratest/modules/http-helper"
-	"github.com/gruntwork-io/terratest/modules/logger"
 	"github.com/gruntwork-io/terratest/modules/terraform"
 	test_structure "github.com/gruntwork-io/terratest/modules/test-structure"
 )
@@ -15,6 +15,8 @@ import (
 func TestHttp(t *testing.T) {
 	t.Parallel()
 	repoPath := ".."
+	varFiles := retrieveVarFiles(t)
+	timestamp := createTimestamp()
 
 	testCases := []*struct {
 		name     string
@@ -36,18 +38,19 @@ func TestHttp(t *testing.T) {
 	test_structure.RunTestStage(t, "setup", func() {
 		terraformOptions := terraform.WithDefaultRetryableErrors(t, &terraform.Options{
 			TerraformDir: repoPath,
+			VarFiles:     varFiles,
+			EnvVars: map[string]string{
+				"TF_LOG_PATH": fmt.Sprintf("logs/%s.terratest.log", timestamp),
+				"TF_LOG":      "DEBUG",
+			},
 		})
-
-		// test_structure.SaveTerraformOptions(t, repoPath, terraformOptions)
-
+		test_structure.SaveTerraformOptions(t, ".", terraformOptions)
 		terraform.InitAndApply(t, terraformOptions)
 	})
 
 	test_structure.RunTestStage(t, "validate", func() {
 		t.Run("group", func(t *testing.T) {
 			for _, testCase := range testCases {
-				// To avoid the range variable from getting updated in the parallel tests, we bind a new name that is within
-				// the scope of the for block.
 				testCase := testCase
 				t.Run(testCase.name, func(t *testing.T) {
 					t.Parallel()
@@ -73,10 +76,7 @@ func TestHttp(t *testing.T) {
 	})
 
 	test_structure.RunTestStage(t, "teardown", func() {
-		// terraformOptions := test_structure.LoadTerraformOptions(t, repoPath)
-		terraform.Destroy(t, &terraform.Options{
-			TerraformDir: repoPath,
-			Logger:       logger.Discard,
-		})
+		terraformOptions := test_structure.LoadTerraformOptions(t, ".")
+		terraform.Destroy(t, terraformOptions)
 	})
 }

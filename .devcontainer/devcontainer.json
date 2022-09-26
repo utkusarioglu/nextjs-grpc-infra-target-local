@@ -6,6 +6,7 @@
   ],
   "service": "terraform",
   "workspaceFolder": "/utkusarioglu-com/projects/nextjs-grpc/infra/local",
+  "postCreateCommand": "scripts/post-create-command.sh",
   "customizations": {
     "vscode": {
       "extensions": [

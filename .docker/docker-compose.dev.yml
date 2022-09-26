@@ -6,3 +6,5 @@ services:
     image: utkusarioglu/terraform-kubernetes-devcontainer:1.2.12
     volumes:
       - ../../..:/utkusarioglu-com/projects/nextjs-grpc/
+    environment:
+      TZ: Etc/UTC
