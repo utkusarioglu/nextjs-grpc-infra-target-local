@@ -1,9 +1,0 @@
-{
-  "project_root_rel_path": ".",
-  "cluster_name": "<cluster_name>",
-  "aws_region": "us-east-0",
-  "helm_timeout_unit": 0,
-  "helm_atomic": true,
-  "md": "<second_level_domain>",
-  "tld": "<top_level_domain>"
-}
