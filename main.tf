@@ -6,7 +6,7 @@ module "base" {
 }
 
 module "app" {
-  source = "../app"
+  source = "../configs/app"
 
   project_root_rel_path = var.project_root_rel_path
   helm_timeout_unit     = var.helm_timeout_unit
