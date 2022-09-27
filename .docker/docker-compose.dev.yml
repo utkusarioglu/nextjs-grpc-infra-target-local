@@ -8,3 +8,5 @@ services:
       - ../../..:/utkusarioglu-com/projects/nextjs-grpc/
     environment:
       TZ: Etc/UTC
+    extra_hosts:
+      - nextjs-grpc.utkusarioglu.com:host-gateway
