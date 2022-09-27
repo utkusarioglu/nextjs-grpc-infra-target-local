@@ -2,10 +2,7 @@ module github.com/utkusarioglu/nextjs-grpc-infra-local
 
 go 1.18
 
-require (
-	github.com/gruntwork-io/terratest v0.40.22
-	github.com/stretchr/testify v1.8.0
-)
+require github.com/gruntwork-io/terratest v0.40.22
 
 require (
 	cloud.google.com/go v0.83.0 // indirect
@@ -54,6 +51,7 @@ require (
 	github.com/pquerna/otp v1.2.0 // indirect
 	github.com/russross/blackfriday/v2 v2.1.0 // indirect
 	github.com/spf13/pflag v1.0.5 // indirect
+	github.com/stretchr/testify v1.8.0 // indirect
 	github.com/tmccombs/hcl2json v0.3.3 // indirect
 	github.com/ulikunitz/xz v0.5.8 // indirect
 	github.com/urfave/cli v1.22.2 // indirect
