@@ -1,12 +1,12 @@
 {
-  "name": "local.infra.nextjs-grpc.projects.utkusarioglu.com",
+  "name": "local.targets.infra.nextjs-grpc.projects.utkusarioglu.com",
   "dockerComposeFile": [
     "../.docker/docker-compose.dev.yml",
     "docker-compose.yml"
   ],
   "postCreateCommand": "scripts/post-create-command.sh",
   "service": "terraform",
-  "workspaceFolder": "/utkusarioglu-com/projects/nextjs-grpc/infra/local",
+  "workspaceFolder": "/utkusarioglu-com/projects/nextjs-grpc/infra/targets/local",
   "customizations": {
     "vscode": {
       "extensions": [

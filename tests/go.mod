@@ -1,4 +1,4 @@
-module github.com/utkusarioglu/nextjs-grpc-infra-local
+module github.com/utkusarioglu/nextjs-grpc-infra-target-local
 
 go 1.18
 
