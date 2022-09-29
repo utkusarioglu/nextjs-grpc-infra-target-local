@@ -1,7 +1,7 @@
 version: "3.9"
 
 services:
-  terraform:
+  nextjs-grpc-infra-target-local:
     container_name: nextjs-grpc-infra-target-local
     image: utkusarioglu/terraform-kubernetes-devcontainer:1.2.14
     volumes:

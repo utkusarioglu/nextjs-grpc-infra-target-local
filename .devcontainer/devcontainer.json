@@ -5,7 +5,7 @@
     "docker-compose.yml"
   ],
   "postCreateCommand": "scripts/post-create-command.sh",
-  "service": "terraform",
+  "service": "nextjs-grpc-infra-target-local",
   "workspaceFolder": "/utkusarioglu-com/projects/nextjs-grpc/infra/targets/local",
   "customizations": {
     "vscode": {
