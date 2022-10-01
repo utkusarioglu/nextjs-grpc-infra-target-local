@@ -15,6 +15,7 @@ module "app" {
   tld                   = var.tld
   environment           = "local"
   cluster_name          = var.cluster_name
+  ingress_sg            = "not-needed-in-local"
 
   depends_on = [
     module.base
