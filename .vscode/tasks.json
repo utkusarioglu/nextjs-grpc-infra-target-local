@@ -2,6 +2,44 @@
   "version": "2.0.0",
   "tasks": [
     {
+      "label": "Create cluster",
+      "detail": "Create a K3s cluster for the deployment",
+      "type": "shell",
+      "command": "k3d cluster create -c assets/k3d.config.yml",
+      "presentation": {
+        "echo": true,
+        "reveal": "always",
+        "focus": true,
+        "panel": "dedicated",
+        "showReuseMessage": false,
+        "clear": false,
+        "close": false
+      },
+      "icon": {
+        "color": "terminal.ansiMagenta",
+        "id": "triangle-up"
+      },
+    },
+    {
+      "label": "Delete cluster",
+      "detail": "Delete the runnign K3s clsuter",
+      "type": "shell",
+      "command": "k3d cluster delete -c assets/k3d.config.yml",
+      "presentation": {
+        "echo": true,
+        "reveal": "always",
+        "focus": true,
+        "panel": "dedicated",
+        "showReuseMessage": false,
+        "clear": false,
+        "close": false
+      },
+      "icon": {
+        "color": "terminal.ansiMagenta",
+        "id": "triangle-down"
+      },
+    },
+    {
       "label": "Watch kubectl",
       "detail": "Watch kubernetes resources",
       "type": "shell",
@@ -26,6 +64,9 @@
         "color": "terminal.ansiBlue",
         "id": "eye"
       },
+      "runOptions": {
+        "instanceLimit": 5
+      }
     },
     {
       "label": "Run tests",
@@ -59,7 +100,8 @@
       "type": "shell",
       "command": "scripts/terraform.sh",
       "args": [
-        "destroy"
+        "destroy",
+        "${input:tfApplyDestroyExtraArgs}"
       ],
       "presentation": {
         "echo": true,
@@ -85,6 +127,7 @@
       "command": "scripts/terraform.sh",
       "args": [
         "apply",
+        "${input:tfApplyDestroyExtraArgs}"
       ],
       "presentation": {
         "echo": true,
@@ -161,6 +204,12 @@
       "id": "resources",
       "description": "Input Kubernetes resources you would like to watch",
       "default": "po svc ing",
+      "type": "promptString"
+    },
+    {
+      "id": "tfApplyDestroyExtraArgs",
+      "description": "Extra args to add for Terraform apply and destroy",
+      "default": "--auto-approve",
       "type": "promptString"
     }
   ]

@@ -4,15 +4,15 @@ services:
     volumes:
       - vscode-extensions:/root/.vscode-server/extensions
       - vscode-extensions-insiders:/root/.vscode-server-insiders/extensions
-      - ~/.config/gh:/terratest/.config/gh:ro
-      - ~/.kube:/terratest/.kube
+      - ~/.config/gh:/home/terraform/.config/gh:ro
+      - ~/.kube:/home/terraform/.kube
       - go:/go
     command: /bin/sh -c "while sleep 1000; do :; done"
 
 volumes:
   vscode-extensions:
-    name: nexjs-grpc-infra-target-local-vscode-extensions
+    name: nextjs-grpc-infra-target-local-vscode-extensions
   vscode-extensions-insiders:
-    name: nexjs-grpc-infra-target-local-vscode-extensions-insiders
+    name: nextjs-grpc-infra-target-local-vscode-extensions-insiders
   go:
-    name: nexjs-grpc-infra-target-local-go
+    name: nextjs-grpc-infra-target-local-go
