@@ -196,11 +196,6 @@
   ],
   "inputs": [
     {
-      "id": "modName",
-      "description": "Go module name for the tests folder",
-      "type": "promptString"
-    },
-    {
       "id": "resources",
       "description": "Input Kubernetes resources you would like to watch",
       "default": "po svc ing",
