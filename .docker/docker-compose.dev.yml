@@ -9,6 +9,9 @@ services:
     extra_hosts:
       local.targets.infra.nextjs-grpc.projects.utkusarioglu.com: host-gateway
       nextjs-grpc.utkusarioglu.com: host-gateway
+      grafana.nextjs-grpc.utkusarioglu.com: host-gateway
+      jaeger.nextjs-grpc.utkusarioglu.com: host-gateway
+      prometheus.nextjs-grpc.utkusarioglu.com: host-gateway
     volumes:
       - type: bind
         source: ..
