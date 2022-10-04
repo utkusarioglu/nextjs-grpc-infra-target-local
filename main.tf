@@ -1,5 +1,5 @@
-module "base" {
-  source            = "./modules/base"
+module "app_tier_1" {
+  source            = "../../configs/app/modules/tier-1"
   project_root_path = local.project_root_path
   helm_timeout_unit = var.helm_timeout_unit
   helm_atomic       = var.helm_atomic
@@ -12,12 +12,12 @@ module "ingress" {
   helm_atomic       = var.helm_atomic
 
   depends_on = [
-    module.base
+    module.app_tier_1
   ]
 }
 
-module "app" {
-  source = "../../configs/app"
+module "app_tier_2" {
+  source = "../../configs/app/modules/tier-2"
 
   project_root_rel_path = var.project_root_rel_path
   helm_timeout_unit     = var.helm_timeout_unit
