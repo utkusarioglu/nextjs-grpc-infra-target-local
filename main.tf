@@ -5,6 +5,17 @@ module "base" {
   helm_atomic       = var.helm_atomic
 }
 
+module "ingress" {
+  source            = "./modules/ingress"
+  project_root_path = local.project_root_path
+  helm_timeout_unit = var.helm_timeout_unit
+  helm_atomic       = var.helm_atomic
+
+  depends_on = [
+    module.base
+  ]
+}
+
 module "app" {
   source = "../../configs/app"
 
@@ -18,6 +29,6 @@ module "app" {
   ingress_sg            = "not-needed-in-local"
 
   depends_on = [
-    module.base
+    module.ingress
   ]
 }

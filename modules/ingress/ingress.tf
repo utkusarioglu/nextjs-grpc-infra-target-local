@@ -6,19 +6,4 @@ resource "helm_release" "ingress" {
   namespace         = "api"
   timeout           = var.helm_timeout_unit
   atomic            = var.helm_atomic
-  depends_on = [
-    helm_release.certificates[0],
-    # helm_release.jaeger[0]
-  ]
-
-  # set {
-  #   name  = "cloudProvider.isLocal"
-  #   value = var.environment == "local"
-  # }
-
-  # set {
-  #   name  = "cloudProvider.isAws"
-  #   value = var.environment == "aws"
-  # }
-
 }
