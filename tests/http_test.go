@@ -33,6 +33,16 @@ func TestHttp(t *testing.T) {
 			url:      "https://nextjs-grpc.utkusarioglu.com",
 			expected: "rocket",
 		},
+		{
+			name:     "Grafana",
+			url:      "https://grafana.nextjs-grpc.utkusarioglu.com/login",
+			expected: "Grafana Labs",
+		},
+		{
+			name:     "Jaeger",
+			url:      "https://jaeger.nextjs-grpc.utkusarioglu.com/search",
+			expected: "Jaeger UI",
+		},
 	}
 
 	test_structure.RunTestStage(t, "setup", func() {
