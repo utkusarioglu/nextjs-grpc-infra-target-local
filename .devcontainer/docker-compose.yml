@@ -13,12 +13,12 @@ services:
         source: ~/.config/gh
         target: /home/terraform/.config/gh
         read_only: true
-      - type: volume
-        source: go
-        target: /go
       - type: bind
         source: ~/.kube
         target: /home/terraform/.kube
+      - type: volume
+        source: go
+        target: /go
 
 volumes:
   vscode-extensions:
