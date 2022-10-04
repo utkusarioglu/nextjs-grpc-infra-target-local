@@ -57,8 +57,8 @@ services:
         target: /utkusarioglu-com/projects/nextjs-grpc/networking
         read_only: true
       - type: bind
-        source: ../../../../otel-log
-        target: /utkusarioglu-com/projects/nextjs-grpc/otel-log
+        source: ../../../../otel-collectors
+        target: /utkusarioglu-com/projects/nextjs-grpc/otel-collectors
         read_only: true
       - type: bind
         source: ../../../../otel-operator
