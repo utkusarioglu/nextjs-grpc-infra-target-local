@@ -1,9 +1,35 @@
 resource "helm_release" "ingress" {
-  count             = 1
-  name              = "ingress"
-  chart             = "${var.project_root_path}/ingress"
-  dependency_update = true
-  namespace         = "api"
-  timeout           = var.helm_timeout_unit
-  atomic            = var.helm_atomic
+  count      = 1
+  name       = "ingress"
+  chart      = "ingress-nginx"
+  repository = "https://kubernetes.github.io/ingress-nginx"
+  version    = "4.2.5"
+
+  values = [
+    yamlencode({
+      controller = {
+
+        metrics = {
+          enabled = true
+        }
+        ingressClass = "public"
+        ingressClassResource = {
+          name    = "public"
+          default = true
+          # enabled = true
+        }
+
+        config = {
+          enable-opentracing              = "false"
+          opentracing-trust-incoming-span = "true"
+          jaeger-collector-host           = "otel-trace-collector.observability"
+          opentracing-operation-name      = "public"
+        }
+
+        extraArgs = {
+          default-ssl-certificate = "api/ingress-server-cert"
+        }
+      }
+    })
+  ]
 }
