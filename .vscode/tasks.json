@@ -79,7 +79,12 @@
       "label": "Stop cluster",
       "detail": "Stop a K3d cluster",
       "type": "shell",
-      "command": "k3d cluster stop -c assets/k3d.config.yml",
+      "command": "k3d",
+      "args": [
+        "cluster",
+        "stop",
+        "${input:clusterName}"
+      ],
       "presentation": {
         "echo": true,
         "reveal": "always",
