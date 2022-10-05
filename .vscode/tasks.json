@@ -5,7 +5,13 @@
       "label": "Create cluster",
       "detail": "Create a K3s cluster for the deployment",
       "type": "shell",
-      "command": "k3d cluster create -c assets/k3d.config.yml",
+      "command": "k3d",
+      "args": [
+        "cluster",
+        "create",
+        "-c",
+        "${input:clusterConfigFilePath}"
+      ],
       "presentation": {
         "echo": true,
         "reveal": "always",
@@ -17,14 +23,20 @@
       },
       "icon": {
         "color": "terminal.ansiMagenta",
-        "id": "triangle-up"
+        "id": "chevron-up"
       },
     },
     {
       "label": "Delete cluster",
       "detail": "Delete the runnign K3s clsuter",
       "type": "shell",
-      "command": "k3d cluster delete -c assets/k3d.config.yml",
+      "command": "k3d",
+      "args": [
+        "cluster",
+        "delete",
+        "-c",
+        "${input:clusterConfigFilePath}"
+      ],
       "presentation": {
         "echo": true,
         "reveal": "always",
@@ -36,7 +48,50 @@
       },
       "icon": {
         "color": "terminal.ansiMagenta",
-        "id": "triangle-down"
+        "id": "chevron-down"
+      },
+    },
+    {
+      "label": "Start cluster",
+      "detail": "Start an existing K3D cluster",
+      "type": "shell",
+      "command": "k3d",
+      "args": [
+        "cluster",
+        "start",
+        "${input:clusterName}"
+      ],
+      "presentation": {
+        "echo": true,
+        "reveal": "always",
+        "focus": true,
+        "panel": "dedicated",
+        "showReuseMessage": false,
+        "clear": false,
+        "close": false
+      },
+      "icon": {
+        "color": "terminal.ansiMagenta",
+        "id": "play"
+      },
+    },
+    {
+      "label": "Stop cluster",
+      "detail": "Stop a K3d cluster",
+      "type": "shell",
+      "command": "k3d cluster stop -c assets/k3d.config.yml",
+      "presentation": {
+        "echo": true,
+        "reveal": "always",
+        "focus": true,
+        "panel": "dedicated",
+        "showReuseMessage": false,
+        "clear": false,
+        "close": false
+      },
+      "icon": {
+        "color": "terminal.ansiMagenta",
+        "id": "debug-stop"
       },
     },
     {
@@ -205,6 +260,18 @@
       "id": "tfApplyDestroyExtraArgs",
       "description": "Extra args to add for Terraform apply and destroy",
       "default": "--auto-approve",
+      "type": "promptString"
+    },
+    {
+      "id": "clusterName",
+      "description": "Cluster name",
+      "default": "nextjs-grpc-infra-target-local",
+      "type": "promptString"
+    },
+    {
+      "id": "clusterConfigFilePath",
+      "description": "Config file path for the cluster",
+      "default": "assets/k3d.config.yml",
       "type": "promptString"
     }
   ]
