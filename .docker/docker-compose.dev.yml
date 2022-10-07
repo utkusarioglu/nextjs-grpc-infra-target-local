@@ -56,10 +56,6 @@ services:
         target: /utkusarioglu-com/projects/nextjs-grpc/otel-collectors
         read_only: true
       - type: bind
-        source: ../../../../otel-operator
-        target: /utkusarioglu-com/projects/nextjs-grpc/otel-operator
-        read_only: true
-      - type: bind
         source: ../../../../prometheus
         target: /utkusarioglu-com/projects/nextjs-grpc/prometheus
         read_only: true
