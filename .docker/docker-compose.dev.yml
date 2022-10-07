@@ -36,10 +36,6 @@ services:
         target: /utkusarioglu-com/projects/nextjs-grpc/grafana
         read_only: true
       - type: bind
-        source: ../../../../ingress
-        target: /utkusarioglu-com/projects/nextjs-grpc/ingress
-        read_only: true
-      - type: bind
         source: ../../../../jaeger
         target: /utkusarioglu-com/projects/nextjs-grpc/jaeger
         read_only: true
@@ -50,10 +46,6 @@ services:
       - type: bind
         source: ../../../../ms
         target: /utkusarioglu-com/projects/nextjs-grpc/ms
-        read_only: true
-      - type: bind
-        source: ../../../../namespaces
-        target: /utkusarioglu-com/projects/nextjs-grpc/namespaces
         read_only: true
       - type: bind
         source: ../../../../networking
