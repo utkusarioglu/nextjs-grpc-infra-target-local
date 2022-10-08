@@ -25,22 +25,22 @@ func TestHttp(t *testing.T) {
 	}{
 		{
 			name:     "grpc",
-			url:      "https://nextjs-grpc.utkusarioglu.com/grpc",
+			url:      "https://nextjs-grpc.utkusarioglu.com/grpc:4430",
 			expected: "Your name is utku, you are 3 years old, you are a teacher",
 		},
 		{
 			name:     "home",
-			url:      "https://nextjs-grpc.utkusarioglu.com",
+			url:      "https://nextjs-grpc.utkusarioglu.com:4430",
 			expected: "rocket",
 		},
 		{
 			name:     "Grafana",
-			url:      "https://grafana.nextjs-grpc.utkusarioglu.com/login",
+			url:      "https://grafana.nextjs-grpc.utkusarioglu.com/login:4430",
 			expected: "Grafana Labs",
 		},
 		{
 			name:     "Jaeger",
-			url:      "https://jaeger.nextjs-grpc.utkusarioglu.com/search",
+			url:      "https://jaeger.nextjs-grpc.utkusarioglu.com/search:4430",
 			expected: "Jaeger UI",
 		},
 	}
