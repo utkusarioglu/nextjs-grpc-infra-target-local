@@ -22,44 +22,44 @@ services:
       - type: bind
         source: ../../../configs/app
         target: /utkusarioglu-com/projects/nextjs-grpc/infra/configs/app
-        read_only: true
+        # read_only: true
       - type: bind
         source: ../../../../api
         target: /utkusarioglu-com/projects/nextjs-grpc/api
-        read_only: true
+        # read_only: true
       - type: bind
         source: ../../../../certificates
         target: /utkusarioglu-com/projects/nextjs-grpc/certificates
-        read_only: true
+        # read_only: true
       - type: bind
         source: ../../../../grafana
         target: /utkusarioglu-com/projects/nextjs-grpc/grafana
-        read_only: true
+        # read_only: true
       - type: bind
         source: ../../../../jaeger
         target: /utkusarioglu-com/projects/nextjs-grpc/jaeger
-        read_only: true
+        # read_only: true
       - type: bind
         source: ../../../../loki
         target: /utkusarioglu-com/projects/nextjs-grpc/loki
-        read_only: true
+        # read_only: true
       - type: bind
         source: ../../../../ms
         target: /utkusarioglu-com/projects/nextjs-grpc/ms
-        read_only: true
+        # read_only: true
       - type: bind
         source: ../../../../otel-collectors
         target: /utkusarioglu-com/projects/nextjs-grpc/otel-collectors
-        read_only: true
+        # read_only: true
       - type: bind
         source: ../../../../prometheus
         target: /utkusarioglu-com/projects/nextjs-grpc/prometheus
-        read_only: true
+        # read_only: true
       - type: bind
         source: ../../../../rbac
         target: /utkusarioglu-com/projects/nextjs-grpc/rbac
-        read_only: true
+        # read_only: true
       - type: bind
         source: ../../../../secrets
         target: /utkusarioglu-com/projects/nextjs-grpc/secrets
-        read_only: true
+        # read_only: true
