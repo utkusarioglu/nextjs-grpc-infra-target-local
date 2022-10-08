@@ -39,6 +39,7 @@ terraform.rc
 
 /vars/**
 !/vars/**.example
+!/vars/**.ci.**
 
 /logs
 /plans
