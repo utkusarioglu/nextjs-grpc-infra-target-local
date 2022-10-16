@@ -29,16 +29,14 @@ jobs:
           repository: utkusarioglu/nextjs-grpc-infra-target-local
           fetch-depth: 0
           path: infra/targets/local
-          ref: feat/set-up-ci-tests
-          # ref: main
+          ref: main
       - name: infra-config-app
         uses: actions/checkout@v2
         with:
           repository: utkusarioglu/nextjs-grpc-infra-config-app
           fetch-depth: 0
           path: infra/configs/app
-          ref: feat/set-up-ci-tests
-          # ref: main
+          ref: main
       - name: api
         uses: actions/checkout@v2
         with:
@@ -115,8 +113,7 @@ jobs:
           repository: utkusarioglu/nextjs-grpc-e2e
           fetch-depth: 0
           path: e2e
-          ref: feat/set-up-ci-tests
-          # ref: main
+          ref: main
 
       - name: Create env file for infra/targets/local
         working-directory: infra/targets/local
