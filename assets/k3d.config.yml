@@ -3,7 +3,7 @@ kind: Simple
 metadata:
   name: nextjs-grpc-infra-target-local
 servers: 1
-agents: 2
+agents: 5
 kubeAPI:
   host: local.targets.infra.nextjs-grpc.projects.utkusarioglu.com
   hostIP: "127.0.0.1"
@@ -39,6 +39,15 @@ options:
       - arg: --node-name=worker-1
         nodeFilters:
           - agent:1
+      - arg: --node-name=worker-2
+        nodeFilters:
+          - agent:2
+      - arg: --node-name=worker-3
+        nodeFilters:
+          - agent:3
+      - arg: --node-name=worker-4
+        nodeFilters:
+          - agent:4
     nodeLabels:
       - label: k3d-node=0
         nodeFilters:
