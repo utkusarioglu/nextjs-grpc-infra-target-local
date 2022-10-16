@@ -25,22 +25,22 @@ func TestHttp(t *testing.T) {
 	}{
 		{
 			name:     "grpc",
-			url:      "https://nextjs-grpc.utkusarioglu.com/grpc:4430",
+			url:      "https://nextjs-grpc.utkusarioglu.com/grpc",
 			expected: "Your name is utku, you are 3 years old, you are a teacher",
 		},
 		{
 			name:     "home",
-			url:      "https://nextjs-grpc.utkusarioglu.com:4430",
+			url:      "https://nextjs-grpc.utkusarioglu.com",
 			expected: "rocket",
 		},
 		{
 			name:     "Grafana",
-			url:      "https://grafana.nextjs-grpc.utkusarioglu.com/login:4430",
+			url:      "https://grafana.nextjs-grpc.utkusarioglu.com/login",
 			expected: "Grafana Labs",
 		},
 		{
 			name:     "Jaeger",
-			url:      "https://jaeger.nextjs-grpc.utkusarioglu.com/search:4430",
+			url:      "https://jaeger.nextjs-grpc.utkusarioglu.com/search",
 			expected: "Jaeger UI",
 		},
 	}
@@ -58,7 +58,7 @@ func TestHttp(t *testing.T) {
 		terraform.InitAndApply(t, terraformOptions)
 	})
 
-	test_structure.RunTestStage(t, "validate", func() {
+	test_structure.RunTestStage(t, "http_local", func() {
 		t.Run("group", func(t *testing.T) {
 			for _, testCase := range testCases {
 				testCase := testCase
@@ -76,8 +76,8 @@ func TestHttp(t *testing.T) {
 						t,
 						testCase.url,
 						tls_config,
-						5,
-						5*time.Second,
+						10,
+						10*time.Second,
 						validateResponse,
 					)
 				})

@@ -1,0 +1,157 @@
+name: run-tests
+
+on:
+  push:
+    tags:
+      - experiment/**/**/**
+  workflow_dispatch:
+
+env:
+  CACHE_FROM_SRC: /tmp/.buildx-cache
+  CACHE_TO_DEST: /tmp/.buildx-cache-new
+  K3D_CONFIG_FILE_PATH: assets/k3d.config.yml
+  E2E_BROWSERS: chrome,firefox,edge
+  E2E_VIEWPORT_SIZES: 1920x1080,540x1200,480x850,480x720
+  BASE_URL: nextjs-grpc.utkusarioglu.com
+  ENVIRONMENT: ci
+  SKIP_STAGES: ""
+  TERRATEST_REPOS: "infra/targets/local infra/configs/app"
+
+jobs:
+  run-tests:
+    name: run-tests
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: infra-target-local
+        uses: actions/checkout@v2
+        with:
+          repository: utkusarioglu/nextjs-grpc-infra-target-local
+          fetch-depth: 0
+          path: infra/targets/local
+          ref: feat/set-up-ci-tests
+          # ref: main
+      - name: infra-config-app
+        uses: actions/checkout@v2
+        with:
+          repository: utkusarioglu/nextjs-grpc-infra-config-app
+          fetch-depth: 0
+          path: infra/configs/app
+          ref: feat/set-up-ci-tests
+          # ref: main
+      - name: api
+        uses: actions/checkout@v2
+        with:
+          repository: utkusarioglu/nextjs-grpc-api
+          fetch-depth: 0
+          path: api
+          ref: main
+      - name: ms
+        uses: actions/checkout@v2
+        with:
+          repository: utkusarioglu/nextjs-grpc-ms
+          fetch-depth: 0
+          path: ms
+          ref: main
+      - name: grafana
+        uses: actions/checkout@v2
+        with:
+          repository: utkusarioglu/nextjs-grpc-grafana
+          fetch-depth: 0
+          path: grafana
+          ref: main
+      - name: jaeger
+        uses: actions/checkout@v2
+        with:
+          repository: utkusarioglu/nextjs-grpc-jaeger
+          fetch-depth: 0
+          path: jaeger
+          ref: main
+      - name: prometheus
+        uses: actions/checkout@v2
+        with:
+          repository: utkusarioglu/nextjs-grpc-prometheus
+          fetch-depth: 0
+          path: prometheus
+          ref: main
+      - name: loki
+        uses: actions/checkout@v2
+        with:
+          repository: utkusarioglu/nextjs-grpc-loki
+          fetch-depth: 0
+          path: loki
+          ref: main
+      - name: otel-collectors
+        uses: actions/checkout@v2
+        with:
+          repository: utkusarioglu/nextjs-grpc-otel-collectors
+          fetch-depth: 0
+          path: otel-collectors
+          ref: main
+      - name: certificates
+        uses: actions/checkout@v2
+        with:
+          repository: utkusarioglu/nextjs-grpc-certificates
+          fetch-depth: 0
+          path: certificates
+          ref: main
+      - name: secrets
+        uses: actions/checkout@v2
+        with:
+          repository: utkusarioglu/nextjs-grpc-secrets
+          fetch-depth: 0
+          path: secrets
+          ref: main
+      - name: rbac
+        uses: actions/checkout@v2
+        with:
+          repository: utkusarioglu/nextjs-grpc-rbac
+          fetch-depth: 0
+          path: rbac
+          ref: main
+      - name: e2e
+        uses: actions/checkout@v2
+        with:
+          repository: utkusarioglu/nextjs-grpc-e2e
+          fetch-depth: 0
+          path: e2e
+          ref: feat/set-up-ci-tests
+          # ref: main
+
+      - name: Create env file for infra/targets/local
+        working-directory: infra/targets/local
+        run: |
+          cat <<EOF > .env 
+          ENVIRONMENT=${{ env.ENVIRONMENT }}
+          EOF
+
+      - name: Create env file for e2e
+        working-directory: e2e
+        run: |
+          cat <<EOF > .env 
+          E2E_BROWSERS=${{ env.E2E_BROWSERS }}
+          E2E_VIEWPORT_SIZES=${{ env.E2E_VIEWPORT_SIZES }}
+          BASE_URL=${{ env.BASE_URL }}
+          EOF
+
+      - name: Run Tests
+        working-directory: infra/targets/local
+        run: scripts/run-tests-step.sh ${{ env.K3D_CONFIG_FILE_PATH }}
+        env: 
+          TERRATEST_REPOS: ${{ env.TERRATEST_REPOS }}
+          SKIP_STAGES: ${{ env.SKIP_STAGES }}
+
+      - name: Upload artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: nextjs-grpc-infra-target-local-e2e-artifacts
+          path: e2e/.cypress/artifacts
+
+      - name: Telegram notifications
+        if: always()
+        uses: utkusarioglu/telegram-notifications@main
+        with:
+          telegram_id: ${{ secrets.TELEGRAM_ID }}
+          telegram_token: ${{ secrets.TELEGRAM_TOKEN }}
+          job_status: ${{ job.status }}
+          github_context: ${{ toJson(github) }}
