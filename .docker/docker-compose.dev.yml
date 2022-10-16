@@ -2,64 +2,9 @@ version: "3.9"
 
 services:
   nextjs-grpc-infra-target-local:
-    container_name: nextjs-grpc-infra-target-local
-    image: utkusarioglu/tf-k8s-devcontainer:1.2.15
-    environment:
-      TZ: Etc/UTC0
     extra_hosts:
       local.targets.infra.nextjs-grpc.projects.utkusarioglu.com: host-gateway
       nextjs-grpc.utkusarioglu.com: host-gateway
       grafana.nextjs-grpc.utkusarioglu.com: host-gateway
       jaeger.nextjs-grpc.utkusarioglu.com: host-gateway
       prometheus.nextjs-grpc.utkusarioglu.com: host-gateway
-    volumes:
-      - type: bind
-        source: ..
-        target: /utkusarioglu-com/projects/nextjs-grpc/infra/targets/local
-      - type: bind
-        source: /var/run/docker.sock
-        target: /var/run/docker.sock
-      - type: bind
-        source: ../../../configs/app
-        target: /utkusarioglu-com/projects/nextjs-grpc/infra/configs/app
-        # read_only: true
-      - type: bind
-        source: ../../../../api
-        target: /utkusarioglu-com/projects/nextjs-grpc/api
-        # read_only: true
-      - type: bind
-        source: ../../../../certificates
-        target: /utkusarioglu-com/projects/nextjs-grpc/certificates
-        # read_only: true
-      - type: bind
-        source: ../../../../grafana
-        target: /utkusarioglu-com/projects/nextjs-grpc/grafana
-        # read_only: true
-      - type: bind
-        source: ../../../../jaeger
-        target: /utkusarioglu-com/projects/nextjs-grpc/jaeger
-        # read_only: true
-      - type: bind
-        source: ../../../../loki
-        target: /utkusarioglu-com/projects/nextjs-grpc/loki
-        # read_only: true
-      - type: bind
-        source: ../../../../ms
-        target: /utkusarioglu-com/projects/nextjs-grpc/ms
-        # read_only: true
-      - type: bind
-        source: ../../../../otel-collectors
-        target: /utkusarioglu-com/projects/nextjs-grpc/otel-collectors
-        # read_only: true
-      - type: bind
-        source: ../../../../prometheus
-        target: /utkusarioglu-com/projects/nextjs-grpc/prometheus
-        # read_only: true
-      - type: bind
-        source: ../../../../rbac
-        target: /utkusarioglu-com/projects/nextjs-grpc/rbac
-        # read_only: true
-      - type: bind
-        source: ../../../../secrets
-        target: /utkusarioglu-com/projects/nextjs-grpc/secrets
-        # read_only: true
