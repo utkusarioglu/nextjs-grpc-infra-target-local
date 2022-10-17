@@ -40,7 +40,11 @@ terraform.rc
 /vars/**
 !/vars/**.example
 !/vars/**.ci.**
+!/vars/**.common.**
 
 /logs
 /plans
 /tests/.test-data
+
+*.issue.md
+*.pr.md
