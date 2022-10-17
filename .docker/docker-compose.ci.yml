@@ -14,5 +14,6 @@ services:
       GITHUB_WORKSPACE: ${GITHUB_WORKSPACE}
       SKIP_STAGES: ${SKIP_STAGES}
       TERRATEST_REPOS: ${TERRATEST_REPOS}
+      PERSISTENT_VOLUMES_ROOT: ${HOME}/volumes
     working_dir: /utkusarioglu-com/projects/nextjs-grpc/infra/targets/local
     entrypoint: scripts/run-tests-entrypoint.sh
