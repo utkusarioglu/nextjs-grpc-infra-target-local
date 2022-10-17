@@ -7,6 +7,7 @@ module "app_tier_1" {
   sld                     = var.sld
   tld                     = var.tld
   persistent_volumes_root = var.persistent_volumes_root
+  deployment_mode         = var.deployment_mode
 }
 
 module "ingress" {
@@ -31,6 +32,7 @@ module "app_tier_2" {
   environment           = "local"
   cluster_name          = var.cluster_name
   ingress_sg            = "not-needed-in-local"
+  deployment_mode       = var.deployment_mode
 
   depends_on = [
     module.ingress
