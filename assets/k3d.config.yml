@@ -30,6 +30,9 @@ options:
       - arg: --disable=traefik
         nodeFilters:
           - server:0
+      - arg: --node-taint=node-role.kubernetes.io/control-plane=true:NoExecute
+        nodeFilters:
+          - server:*
       - arg: --node-name=server-0
         nodeFilters:
           - server:0
