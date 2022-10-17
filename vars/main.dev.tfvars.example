@@ -1,6 +1,0 @@
-project_root_rel_path = "../../.."
-cluster_name          = "example"
-helm_timeout_unit     = 0
-helm_atomic           = false
-sld                   = "example"
-tld                   = "example"

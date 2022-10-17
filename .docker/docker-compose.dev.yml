@@ -8,3 +8,5 @@ services:
       grafana.nextjs-grpc.utkusarioglu.com: host-gateway
       jaeger.nextjs-grpc.utkusarioglu.com: host-gateway
       prometheus.nextjs-grpc.utkusarioglu.com: host-gateway
+    environment:
+      PERSISTENT_VOLUMES_ROOT: ${HOME}/dev/volumes/nextjs-grpc
