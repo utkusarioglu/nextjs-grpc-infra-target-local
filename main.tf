@@ -15,6 +15,7 @@ module "ingress" {
   project_root_path = local.project_root_path
   helm_timeout_unit = var.helm_timeout_unit
   helm_atomic       = var.helm_atomic
+  deployment_mode   = var.deployment_mode
 
   depends_on = [
     module.app_tier_1
