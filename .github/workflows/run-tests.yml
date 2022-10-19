@@ -29,14 +29,16 @@ jobs:
           repository: utkusarioglu/nextjs-grpc-infra-target-local
           fetch-depth: 0
           path: infra/targets/local
-          ref: main
+          ref: experiment/infra-config-app/issue-8
+          # ref: main
       - name: infra-config-app
         uses: actions/checkout@v2
         with:
           repository: utkusarioglu/nextjs-grpc-infra-config-app
           fetch-depth: 0
           path: infra/configs/app
-          ref: main
+          ref: experiment/test/issue-8
+          # ref: main
       - name: api
         uses: actions/checkout@v2
         with:
