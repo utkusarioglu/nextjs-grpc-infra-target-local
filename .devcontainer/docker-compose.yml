@@ -3,12 +3,12 @@ services:
   nextjs-grpc-infra-target-local:
     command: /bin/sh -c "while sleep 1000; do :; done"
     volumes:
-      - type: volume
-        source: vscode-extensions
-        target: /home/terraform/.vscode-server/extensions
-      - type: volume
-        source: vscode-extensions-insiders
-        target: /home/terraform/.vscode-server-insiders/extensions
+      # - type: volume
+      #   source: vscode-extensions
+      #   target: /home/terraform/.vscode-server/extensions
+      # - type: volume
+      #   source: vscode-extensions-insiders
+      #   target: /home/terraform/.vscode-server-insiders/extensions
       - type: bind
         source: ~/.config/gh
         target: /home/terraform/.config/gh

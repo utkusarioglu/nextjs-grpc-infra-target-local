@@ -3,7 +3,6 @@
 source .env
 current_dir=$(pwd)
 
-
 BASEPATH=/utkusarioglu-com/projects/nextjs-grpc
 
 mkdir -p logs
