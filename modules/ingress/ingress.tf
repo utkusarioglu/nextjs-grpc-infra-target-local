@@ -1,5 +1,5 @@
 resource "helm_release" "ingress" {
-  count      = 1
+  count      = local.deployment_configs.ingress.count
   name       = "ingress"
   chart      = "ingress-nginx"
   repository = "https://kubernetes.github.io/ingress-nginx"
