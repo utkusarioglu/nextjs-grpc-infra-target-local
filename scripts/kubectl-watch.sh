@@ -5,16 +5,21 @@ check_env
 check_repo_config
 
 resources=${1:-$DEFAULT_KUBECTL_WATCH_RESOURCES}
+namespace_sorted="po svc ds sts"
+wide="po no sts ing"
 
 echo "watch '\
   for resource in $resources; do \
     echo \$resource; \
     kubectl get \$resource \
       -A \
-      \$(if [ \$resource != \"svc\" ] && [ \$resource != \"ds\" ]; \
-      then \
+      \$(if echo "$namespace_sorted" | grep -q \$resource; then \
+        echo \"--sort-by=.metadata.namespace\"; \
+      fi) \
+      \$(if echo "$wide" | grep -q \$resource; then \
         echo \"-o=wide\"; \
-      fi); \
+      fi) \
+      ; \
     echo; \
   done\
 '" | \
