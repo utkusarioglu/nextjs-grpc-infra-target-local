@@ -16,9 +16,27 @@ ports:
     nodeFilters:
       - loadbalancer
 volumes:
-  - volume: ${PERSISTENT_VOLUMES_ROOT}/ethereum-pv:/persistent-volumes/ethereum-pv
+  - volume: ${PERSISTENT_VOLUMES_ROOT}/ethereum-pv:/${TARGET_VOLUMES_ROOT}/ethereum-pv
     nodeFilters:
       - agent:3
+      - agent:4
+  - volume: ${PERSISTENT_VOLUMES_ROOT}/server-0:${TARGET_VOLUMES_ROOT}
+    nodeFilters:
+      - server:0
+  - volume: ${PERSISTENT_VOLUMES_ROOT}/worker-0:${TARGET_VOLUMES_ROOT}
+    nodeFilters:
+      - agent:0
+  - volume: ${PERSISTENT_VOLUMES_ROOT}/worker-1:${TARGET_VOLUMES_ROOT}
+    nodeFilters:
+      - agent:1
+  - volume: ${PERSISTENT_VOLUMES_ROOT}/worker-2:${TARGET_VOLUMES_ROOT}
+    nodeFilters:
+      - agent:2
+  - volume: ${PERSISTENT_VOLUMES_ROOT}/worker-3:${TARGET_VOLUMES_ROOT}
+    nodeFilters:
+      - agent:3
+  - volume: ${PERSISTENT_VOLUMES_ROOT}/worker-4:${TARGET_VOLUMES_ROOT}
+    nodeFilters:
       - agent:4
 options:
   k3d:

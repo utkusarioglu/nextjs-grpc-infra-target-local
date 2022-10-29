@@ -10,4 +10,5 @@ services:
       prometheus.nextjs-grpc.utkusarioglu.com: host-gateway
     environment:
       PERSISTENT_VOLUMES_ROOT: ${HOME}/dev/volumes/nextjs-grpc
+      TARGET_VOLUMES_ROOT: /var/lib/rancher/k3s/storage
       CLUSTER_REGION: eu-central-1
