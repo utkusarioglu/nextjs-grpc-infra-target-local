@@ -2,13 +2,13 @@ version: "3.9"
 
 services:
   nextjs-grpc-infra-target-local:
+    environment:
+      PERSISTENT_VOLUMES_ROOT: ${HOME}/dev/volumes/nextjs-grpc
+      TARGET_VOLUMES_ROOT: /var/lib/rancher/k3s/storage
+      CLUSTER_REGION: eu-central-1
     extra_hosts:
       local.targets.infra.nextjs-grpc.projects.utkusarioglu.com: host-gateway
       nextjs-grpc.utkusarioglu.com: host-gateway
       grafana.nextjs-grpc.utkusarioglu.com: host-gateway
       jaeger.nextjs-grpc.utkusarioglu.com: host-gateway
       prometheus.nextjs-grpc.utkusarioglu.com: host-gateway
-    environment:
-      PERSISTENT_VOLUMES_ROOT: ${HOME}/dev/volumes/nextjs-grpc
-      TARGET_VOLUMES_ROOT: /var/lib/rancher/k3s/storage
-      CLUSTER_REGION: eu-central-1
