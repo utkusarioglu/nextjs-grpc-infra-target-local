@@ -4,4 +4,4 @@ sld                   = "nextjs-grpc.utkusarioglu"
 tld                   = "com"
 
 # Has to match k3d config
-persistent_volumes_root = "/persistent-volumes"
+persistent_volumes_root = "/var/lib/rancher/k3s/storage"
