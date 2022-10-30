@@ -130,6 +130,11 @@ jobs:
           E2E_VIEWPORT_SIZES=${{ env.E2E_VIEWPORT_SIZES }}
           BASE_URL=${{ env.BASE_URL }}
           EOF
+      
+      - name: Create CA
+        working-directory: infra/targets/local
+        run: |
+          scripts/openssl-create-ca.sh
 
       - name: Run Tests
         working-directory: infra/targets/local
