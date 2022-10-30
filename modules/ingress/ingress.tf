@@ -4,6 +4,7 @@ resource "helm_release" "ingress" {
   chart      = "ingress-nginx"
   repository = "https://kubernetes.github.io/ingress-nginx"
   version    = "4.2.5"
+  namespace  = kubernetes_namespace.ingress[0].metadata[0].name
 
   values = [
     yamlencode({
@@ -16,7 +17,6 @@ resource "helm_release" "ingress" {
         ingressClassResource = {
           name    = "public"
           default = true
-          # enabled = true
         }
 
         config = {
@@ -27,7 +27,10 @@ resource "helm_release" "ingress" {
         }
 
         extraArgs = {
-          default-ssl-certificate = "api/ingress-server-cert"
+          default-ssl-certificate = join("/", [
+            kubernetes_namespace.ingress[0].metadata[0].name,
+            kubernetes_secret.ingress_server_cert[0].metadata[0].name
+          ])
         }
       }
     })
