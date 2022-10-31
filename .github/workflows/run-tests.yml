@@ -37,7 +37,8 @@ jobs:
           repository: utkusarioglu/nextjs-grpc-infra-config-app-services
           fetch-depth: 0
           path: infra/configs/app/services
-          ref: main
+          # ref: main
+          ref: experiment/feat/vault-integration
       - name: api
         uses: actions/checkout@v2
         with:
