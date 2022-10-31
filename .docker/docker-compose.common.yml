@@ -16,8 +16,8 @@ services:
         source: /var/run/docker.sock
         target: /var/run/docker.sock
       - type: bind
-        source: ../../../configs/app
-        target: /utkusarioglu-com/projects/nextjs-grpc/infra/configs/app
+        source: ../../../configs/app/services
+        target: /utkusarioglu-com/projects/nextjs-grpc/infra/configs/app/services
       - type: bind
         source: ../../../../api
         target: /utkusarioglu-com/projects/nextjs-grpc/api
