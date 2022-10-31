@@ -9,7 +9,7 @@ module "ingress" {
 }
 
 module "app_tier_1" {
-  source = "../../configs/app/modules/tier-1"
+  source = "../../configs/app/services/modules/tier-1"
 
   project_root_path       = local.project_root_path
   helm_timeout_unit       = var.helm_timeout_unit
@@ -25,7 +25,7 @@ module "app_tier_1" {
 }
 
 module "app_tier_2" {
-  source = "../../configs/app/modules/tier-2"
+  source = "../../configs/app/services/modules/tier-2"
 
   project_root_rel_path = var.project_root_rel_path
   helm_timeout_unit     = var.helm_timeout_unit

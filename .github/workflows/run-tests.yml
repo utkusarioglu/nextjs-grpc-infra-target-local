@@ -15,7 +15,7 @@ env:
   BASE_URL: nextjs-grpc.utkusarioglu.com
   ENVIRONMENT: ci
   SKIP_STAGES: ""
-  TERRATEST_REPOS: "infra/targets/local infra/configs/app"
+  TERRATEST_REPOS: "infra/targets/local infra/configs/app/services"
 
 jobs:
   run-tests:
@@ -29,13 +29,14 @@ jobs:
           repository: utkusarioglu/nextjs-grpc-infra-target-local
           fetch-depth: 0
           path: infra/targets/local
-          ref: main
-      - name: infra-config-app
+          # ref: main
+          ref: experiment/feat/vault-integration
+      - name: infra-config-app-services
         uses: actions/checkout@v2
         with:
-          repository: utkusarioglu/nextjs-grpc-infra-config-app
+          repository: utkusarioglu/nextjs-grpc-infra-config-app-services
           fetch-depth: 0
-          path: infra/configs/app
+          path: infra/configs/app/services
           ref: main
       - name: api
         uses: actions/checkout@v2
