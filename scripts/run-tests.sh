@@ -3,7 +3,7 @@
 source .env
 current_dir=$(pwd)
 
-
+# TODO retrieve this from its source, this shouldn't be defined here
 BASEPATH=/utkusarioglu-com/projects/nextjs-grpc
 
 mkdir -p logs
