@@ -1,11 +1,11 @@
 resource "tls_private_key" "ingress_pk" {
-  count       = 1
+  count       = local.deployment_configs.ingress.count
   algorithm   = "ECDSA"
   ecdsa_curve = "P256"
 }
 
 resource "tls_cert_request" "ingress_cert_req" {
-  count           = 1
+  count           = local.deployment_configs.ingress.count
   private_key_pem = tls_private_key.ingress_pk[0].private_key_pem
 
   subject {
@@ -21,16 +21,17 @@ resource "tls_cert_request" "ingress_cert_req" {
     "prometheus.${var.sld}.${var.tld}",
     "jaeger.${var.sld}.${var.tld}",
     "kubernetes-dashboard.${var.sld}.${var.tld}",
+    "vault.${var.sld}.${var.tld}",
   ]
 }
 
 resource "tls_locally_signed_cert" "ingress_cert" {
-  count              = 1
+  count              = local.deployment_configs.ingress.count
   cert_request_pem   = tls_cert_request.ingress_cert_req[0].cert_request_pem
   ca_private_key_pem = local.certificate_authority.key
   ca_cert_pem        = local.certificate_authority.cert
 
-  validity_period_hours = 12
+  validity_period_hours = 24
 
   allowed_uses = [
     "server_auth",
@@ -38,7 +39,7 @@ resource "tls_locally_signed_cert" "ingress_cert" {
 }
 
 resource "kubernetes_secret" "ingress_server_cert" {
-  count = 1
+  count = local.deployment_configs.ingress.count
 
   metadata {
     name      = "ingress-server-cert"
