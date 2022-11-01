@@ -10,6 +10,7 @@ services:
       grafana.nextjs-grpc.utkusarioglu.com: 127.0.0.1
       jaeger.nextjs-grpc.utkusarioglu.com: 127.0.0.1
       prometheus.nextjs-grpc.utkusarioglu.com: 127.0.0.1
+      vault-ui.nextjs-grpc.utkusarioglu.com: 127.0.0.1
     environment:
       GITHUB_WORKSPACE: ${GITHUB_WORKSPACE}
       SKIP_STAGES: ${SKIP_STAGES}

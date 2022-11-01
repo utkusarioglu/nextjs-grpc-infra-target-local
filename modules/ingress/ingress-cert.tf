@@ -17,7 +17,10 @@ resource "tls_cert_request" "ingress_cert_req" {
 
   dns_names = [
     "${var.sld}.${var.tld}",
-    "*.${var.sld}.${var.tld}"
+    "grafana.${var.sld}.${var.tld}",
+    "prometheus.${var.sld}.${var.tld}",
+    "jaeger.${var.sld}.${var.tld}",
+    "kubernetes-dashboard.${var.sld}.${var.tld}",
   ]
 }
 
@@ -52,12 +55,4 @@ resource "kubernetes_secret" "ingress_server_cert" {
       local.certificate_authority.cert
     ])
   }
-}
-
-resource "local_file" "cert_chain" {
-  content = join("", [
-    tls_locally_signed_cert.ingress_cert[0].cert_pem,
-    local.certificate_authority.cert
-  ])
-  filename = "artifacts/cert-chain.crt"
 }
