@@ -24,8 +24,8 @@ resource "tls_cert_request" "ingress_cert_req" {
 resource "tls_locally_signed_cert" "ingress_cert" {
   count              = 1
   cert_request_pem   = tls_cert_request.ingress_cert_req[0].cert_request_pem
-  ca_private_key_pem = file(".certs/ca/ca.key")
-  ca_cert_pem        = file(".certs/ca/ca.crt")
+  ca_private_key_pem = local.certificate_authority.key
+  ca_cert_pem        = local.certificate_authority.cert
 
   validity_period_hours = 12
 
@@ -45,11 +45,19 @@ resource "kubernetes_secret" "ingress_server_cert" {
   type = "kubernetes.io/tls"
 
   data = {
-    "tls.crt" = join("\n", [
-      tls_locally_signed_cert.ingress_cert[0].cert_pem,
-      file(".certs/ca/ca.crt"),
-    ]),
+    "ca.crt"  = local.certificate_authority.cert
     "tls.key" = tls_private_key.ingress_pk[0].private_key_pem
+    "tls.crt" = join("", [
+      tls_locally_signed_cert.ingress_cert[0].cert_pem,
+      local.certificate_authority.cert
+    ])
   }
+}
 
+resource "local_file" "cert_chain" {
+  content = join("", [
+    tls_locally_signed_cert.ingress_cert[0].cert_pem,
+    local.certificate_authority.cert
+  ])
+  filename = "artifacts/cert-chain.crt"
 }

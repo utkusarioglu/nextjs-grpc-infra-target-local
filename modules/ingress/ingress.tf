@@ -5,6 +5,8 @@ resource "helm_release" "ingress" {
   repository = "https://kubernetes.github.io/ingress-nginx"
   version    = "4.2.5"
   namespace  = kubernetes_namespace.ingress[0].metadata[0].name
+  timeout    = var.helm_timeout_unit * 2
+  atomic     = var.helm_atomic
 
   values = [
     yamlencode({
@@ -35,4 +37,8 @@ resource "helm_release" "ingress" {
       }
     })
   ]
+
+  # depends_on = [
+  #   kubernetes_secret.ingress_server_cert[0]
+  # ]
 }

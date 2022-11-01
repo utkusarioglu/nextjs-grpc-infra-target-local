@@ -15,6 +15,12 @@ ports:
   - port: 443:443
     nodeFilters:
       - loadbalancer
+    # This is used by vault UI
+  - port: 8200:8200
+    nodeFilters:
+      - agent:0
+      - agent:2
+      - agent:4
 volumes:
   - volume: ${PERSISTENT_VOLUMES_ROOT}/ethereum-pv:/${TARGET_VOLUMES_ROOT}/ethereum-pv
     nodeFilters:
