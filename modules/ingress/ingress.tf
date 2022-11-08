@@ -37,8 +37,4 @@ resource "helm_release" "ingress" {
       }
     })
   ]
-
-  # depends_on = [
-  #   kubernetes_secret.ingress_server_cert[0]
-  # ]
 }
