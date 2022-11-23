@@ -33,6 +33,7 @@ resource "helm_release" "ingress" {
             kubernetes_namespace.ingress[0].metadata[0].name,
             kubernetes_secret.ingress_server_cert[0].metadata[0].name
           ])
+          # enable-ssl-passthrough = ""
         }
       }
     })
